@@ -7,9 +7,9 @@ require('mxd-config')(config);
 
 # config
 
-If environment variables are set, the config object will be ignored!
-
 ## environment variables
+
+If environment variables are set, the config object will be ignored!
 
 * PORT: Port the application listen
 
