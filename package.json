@@ -4,16 +4,7 @@
   "version": "2.0.0",
   "homepage": "http://github.com/maxdome/config",
   "readmeFilename": "README.md",
-  "main": "dest/lib.js",
-  "scripts": {
-    "prepublish": "npm run transpile",
-    "transpile": "babel src -d dest"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-plugin-transform-async-to-generator": "^6.8.0",
-    "babel-preset-es2015-node4": "^2.1.0"
-  },
+  "main": "src/lib.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/maxdome/config.git"
