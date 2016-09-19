@@ -3,6 +3,8 @@
 const path = require('path');
 
 module.exports = environment => {
+  environment = environment || process.env.NODE_ENV || 'development';
+
   let filenames;
   if (environment === 'development') {
     filenames = ['all.json', 'development.json', 'properties.json'];
