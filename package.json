@@ -1,11 +1,10 @@
 {
   "name": "mxd-config",
-  "description": "Loads the 'config/properties.json' if available and allow to overwrite the port by enviroment variable",
-  "version": "1.0.0",
+  "description": "Loads the config files if available depending on the environment",
+  "version": "2.0.0",
   "homepage": "http://github.com/maxdome/config",
   "readmeFilename": "README.md",
   "main": "src/lib.js",
-  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/maxdome/config.git"

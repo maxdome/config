@@ -1,14 +1,30 @@
 'use strict';
 
-module.exports = (config) => {
-  try {
-    Object.assign(config, require(process.cwd() + '/config/properties.json'));
-  } catch (e) {
-    if (e.code !== 'MODULE_NOT_FOUND') {
-      throw e;
+const path = require('path');
+
+module.exports = environment => {
+  environment = environment || process.env.NODE_ENV || 'development';
+
+  let filenames;
+  if (environment === 'development') {
+    filenames = ['all.json', 'development.json', 'properties.json'];
+  } else {
+    filenames = ['all.json', 'properties.json'];
+  }
+
+  const directory = path.join(process.cwd(), 'config');
+  let config = {};
+  for (const filename of filenames) {
+    try {
+      Object.assign(config, require(path.join(directory, filename)));
+    } catch (e) {
+      if (e.code !== 'MODULE_NOT_FOUND') {
+        throw e;
+      }
     }
   }
-  if (process.env.PORT) {
-    config.port = process.env.PORT;
-  }
+
+  Object.assign(config, { environment: environment });
+
+  return config;
 };
