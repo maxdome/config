@@ -11,11 +11,11 @@ module.exports = opts => {
   }
   opts.filenames = opts.filenames || [];
 
-  const filenames = ['all.json'];
+  let filenames = ['all.json'];
   if (opts.environment === 'development') {
     filenames.push('development.json');
   }
-  filenames.concat(opts.filenames);
+  filenames = filenames.concat(opts.filenames);
   filenames.push('properties.json');
 
   const directory = path.join(process.cwd(), 'config');
