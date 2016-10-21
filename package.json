@@ -1,7 +1,7 @@
 {
   "name": "mxd-config",
   "description": "Loads the config files if available depending on the environment",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "homepage": "http://github.com/maxdome/config",
   "readmeFilename": "README.md",
   "main": "src/lib.js",
