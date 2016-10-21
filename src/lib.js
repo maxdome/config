@@ -2,15 +2,21 @@
 
 const path = require('path');
 
-module.exports = environment => {
-  environment = environment || process.env.NODE_ENV || 'development';
-
-  let filenames;
-  if (environment === 'development') {
-    filenames = ['all.json', 'development.json', 'properties.json'];
+module.exports = opts => {
+  if (typeof opts === 'string') {
+    opts = { environment: opts };
   } else {
-    filenames = ['all.json', 'properties.json'];
+    opts = opts || {};
+    opts.environment = opts.environment || process.env.NODE_ENV || 'development';
   }
+  opts.filenames = opts.filenames || [];
+
+  const filenames = ['all.json'];
+  if (opts.environment === 'development') {
+    filenames.push('development.json');
+  }
+  filenames.concat(opts.filenames);
+  filenames.push('properties.json');
 
   const directory = path.join(process.cwd(), 'config');
   let config = {};
@@ -24,7 +30,7 @@ module.exports = environment => {
     }
   }
 
-  Object.assign(config, { environment: environment });
+  Object.assign(config, { environment: opts.environment });
 
   return config;
 };
