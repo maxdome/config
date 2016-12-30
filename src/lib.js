@@ -5,10 +5,11 @@ const path = require('path');
 module.exports = opts => {
   if (typeof opts === 'string') {
     opts = { environment: opts };
-  } else {
-    opts = opts || {};
-    opts.environment = opts.environment || process.env.NODE_ENV || 'development';
+  } else if (Array.isArray(opts)) {
+    opts = { filenames: opts };
   }
+  opts = opts || {};
+  opts.environment = opts.environment || process.env.NODE_ENV || 'development';
   opts.filenames = opts.filenames || [];
 
   let filenames = ['all.json'];
