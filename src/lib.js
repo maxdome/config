@@ -1,6 +1,9 @@
 'use strict';
 
 const path = require('path');
+const _ = {
+  mergeWith: require('lodash.mergewith'),
+};
 
 module.exports = opts => {
   if (typeof opts === 'string') {
@@ -12,21 +15,31 @@ module.exports = opts => {
   opts.environment = opts.environment || process.env.NODE_ENV || 'development';
   opts.filenames = opts.filenames || [];
 
-  let filenames = ['all.json'];
+  let filenames = ['all'];
   if (opts.environment === 'development') {
-    filenames.push('development.json');
+    filenames.push('development');
   }
   filenames = filenames.concat(opts.filenames);
-  filenames.push('properties.json');
+  filenames.push('properties');
 
   const directory = path.join(process.cwd(), 'config');
   let config = {};
   for (const filename of filenames) {
-    try {
-      Object.assign(config, require(path.join(directory, filename)));
-    } catch (e) {
-      if (e.code !== 'MODULE_NOT_FOUND') {
-        throw e;
+    for (const fileformat of ['.json', '.js']) {
+      try {
+        _.mergeWith(
+          config,
+          require(path.join(directory, filename + fileformat)),
+          (objValue, srcValue) => {
+            if (Array.isArray(srcValue)) {
+              return srcValue;
+            }
+          }
+        );
+      } catch (e) {
+        if (e.code !== 'MODULE_NOT_FOUND') {
+          throw e;
+        }
       }
     }
   }

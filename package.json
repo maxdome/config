@@ -1,12 +1,15 @@
 {
   "name": "mxd-config",
   "description": "Loads the config files if available depending on the environment",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "homepage": "http://github.com/maxdome/config",
   "readmeFilename": "README.md",
   "main": "src/lib.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/maxdome/config.git"
+  },
+  "dependencies": {
+    "lodash.mergewith": "^4.6.0"
   }
 }
