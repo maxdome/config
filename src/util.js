@@ -27,7 +27,7 @@ const util = module.exports = {
   getList(key, defaultValue = [], separator) {
     const val = util.getEnv(key, defaultValue);
     if (typeof val === 'string') {
-      return val.split(separator || '|');
+      return val.split(separator || ',').map(item => item.trim());
     }
     return val;
   }
