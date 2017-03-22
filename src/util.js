@@ -21,7 +21,7 @@ const util = module.exports = {
   },
 
   getBool(key, defaultValue) {
-    return [true, 'true', 'on', 'enabled', '1'].indexOf(util.getEnv(key, defaultValue)) > -1;
+    return [true, 'true', 'on', 'enabled', 'yes', '1'].indexOf(util.getEnv(key, defaultValue)) > -1;
   },
 
   getList(key, defaultValue = [], separator) {
